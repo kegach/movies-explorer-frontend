@@ -1,0 +1,178 @@
+.about {
+  padding: 110px 70px;
+  background: #fafafa;
+}
+
+.about__title {
+  font-family: Inter;
+  font-style: normal;
+  font-weight: normal;
+  font-size: 22px;
+  line-height: 27px;
+  letter-spacing: -0.04em;
+  margin-bottom: 70px;
+  color: #000000;
+}
+
+.about__subtitle {
+  font-family: Inter;
+  font-style: normal;
+  font-weight: normal;
+  font-size: 20px;
+  line-height: 24px;
+  letter-spacing: -0.04em;
+  color: #000000;
+  margin: 0 0 26px;
+}
+
+.about__text {
+  margin: 0;
+  font-family: Inter;
+  font-style: normal;
+  font-weight: normal;
+  font-size: 14px;
+  line-height: 20px;
+  color: #000000;
+}
+
+.about__two-columns {
+  display: flex;
+  justify-content: space-between;
+  width: 100%;
+  margin-bottom: 110px;
+}
+
+.about__two-columns:last-of-type {
+  margin-bottom: 0;
+}
+
+.about__column {
+  width: 47%;
+}
+
+.about__left-column {
+  width: 20%;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+
+.about__right-column {
+  width: 80%;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+
+.about__diagram {
+  width: 100%;
+  text-align: center;
+  padding: 9px 0;
+  font-size: 14px;
+  line-height: 18px;
+  margin: 0 0 14px;
+}
+
+.about__diagram_backend {
+  background: #3456f3;
+  color: #fff;
+  font-family: Inter;
+  font-style: normal;
+  font-weight: normal;
+  font-size: 14px;
+  line-height: 17px;
+  text-align: center;
+}
+
+.about__diagram_frontend {
+  background: #f2f2f2;
+  font-family: Inter;
+  font-style: normal;
+  font-weight: normal;
+  font-size: 14px;
+  line-height: 17px;
+  text-align: center;
+  color: black;
+}
+
+.about__diagram-caption {
+  font-size: 14px;
+  line-height: 17px;
+  color: #a0a0a0;
+  margin: 0;
+}
+
+@media screen and (max-width: 1024px) {
+  .about {
+    padding: 90px 50px;
+  }
+}
+
+@media screen and (max-width: 768px) {
+  .about__two-columns {
+    margin-bottom: 93px;
+  }
+
+  .about__text {
+    font-size: 12px;
+    line-height: 18px;
+  }
+}
+
+@media screen and (max-width: 640px) {
+  .about {
+    padding: 70px 18px;
+  }
+
+  .about__title {
+    margin-bottom: 60px;
+  }
+
+  .about__two-columns {
+    margin-bottom: 60px;
+    flex-direction: column;
+  }
+
+  .about__two-columns:last-of-type {
+    flex-direction: row;
+  }
+
+  .about__column {
+    width: 100%;
+    margin-bottom: 56px;
+  }
+
+  .about__column:last-of-type {
+    margin-bottom: 0;
+  }
+
+  .about__subtitle {
+    font-size: 18px;
+    line-height: 22px;
+    margin-bottom: 16px;
+  }
+
+  .about__text {
+    font-size: 11px;
+    line-height: 16px;
+  }
+
+  .about__left-column {
+    width: 35%;
+  }
+
+  .about__right-column {
+    width: 65%;
+  }
+
+  .about__diagram {
+    font-size: 11px;
+    line-height: 13px;
+    padding: 11px 0;
+  }
+
+  .about__diagram-caption {
+    font-size: 11px;
+    line-height: 13px;
+  }
+}
