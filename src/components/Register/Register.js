@@ -3,30 +3,44 @@ import Header from '../Header/Header';
 import Section from '../Section/Section';
 import Form from '../Form/Form';
 import './Register.css';
+import useFormValid from '../../utils/useFormValid';
 
-const Register = () => (
+const Register = ({ onRegister, isFormDisabled }) => {
+  const { isValid, values, errors, handleChange } = useFormValid({ name: '', email: '', password: '' });
+  const handleFocus = (evt) => {
+    evt.target.removeAttribute('readonly');
+  };
+
+  return (
   <>
     <div className="register">
     <Header mod="header_section_auth" />
-    <Section mod="section_type_auth" sectionTitle="Добро пожаловать!" sectionTitleMod="section__title_type_auth">
+    <Section mod="section_type_auth" sectionTitleMod="section__title_type_auth" sectionTitle="Добро пожаловать!">
       <Form linkPath="/signin"
-        linkText="Войти"
+        data={values}
+        onSubmit={onRegister}
+        isValid={isValid}
+        isFormDisabled={isFormDisabled}
         buttonText="Зарегистрироваться"
         caption="Уже зарегистрированы? "
+        linkText="Войти"
       >
-        <fieldset className="form__fieldset">
+        <fieldset className="form__fieldset" disabled={isFormDisabled}>
           <div className="form__span" htmlFor="name">Имя</div>
-          <input className="form__input" id="name" required minLength={2} maxLength={30} defaultValue="Миша" />
+          <input name="name" id="name" className="form__input" value={values.name} onChange={handleChange} required minLength={2} maxLength={30}/>
+          <span className="form__error">{errors.name}</span>
           <div className="form__span" htmlFor="email">E-mail</div>
-          <input type="email" className="form__input" id="email" required defaultValue="qwerty@mail.ru" />
+          <input name="email" id="email" type="email" className="form__input" value={values.email} onChange={handleChange} required readOnly onFocus={handleFocus}/>
+          <span className="form__error">{errors.email}</span>
           <div className="form__span" htmlFor="password">Пароль</div>
-          <input type="password" className="form__input form__input_with-error" id="password" required defaultValue="12345678" />
-          <span className="form__error">Что-то пошло не так</span>
+          <input name="password" id="password" type="password" className="form__input" value={values.password} onChange={handleChange} required minLength={4}/>
+          <span className="form__error">{errors.password}</span>
         </fieldset>
       </Form>
     </Section>
     </div>
   </>
-);
+  );
+};
 
 export default Register;
