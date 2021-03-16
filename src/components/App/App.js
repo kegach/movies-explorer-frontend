@@ -14,8 +14,7 @@ import './App.css';
 import * as api from '../../utils/MainApi';
 import * as moviesApi from '../../utils/MoviesApi';
 import { search, reformMovies } from '../../utils/utils';
-import { fetchErrorMessage } from '../../utils/constants';
-import errorImg from '../../images/error.svg';
+import errorIm from '../../images/error.svg';
 
 const App = () => {
   const [isToken, setIsToken] = useState(false); 
@@ -128,7 +127,7 @@ const App = () => {
       setSearchedMovies(searchedMovies);
       localStorage.setItem("searchedMovies", JSON.stringify(searchedMovies));
     } catch (err) {
-      error(fetchErrorMessage);
+      error("Ошибка");
     } finally {
       setIsLoading(false);
     }
@@ -190,9 +189,9 @@ const App = () => {
     }
   };
 
-  const error = (msg) => {
-    setMessage(msg);
-    setInfoTooltipImage(errorImg);
+  const error = (message) => {
+    setMessage(message);
+    setInfoTooltipImage(errorIm);
     setIsInfoTooltipOpen(true);
   };
 

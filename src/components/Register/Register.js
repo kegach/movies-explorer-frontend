@@ -3,7 +3,7 @@ import Header from '../Header/Header';
 import Section from '../Section/Section';
 import Form from '../Form/Form';
 import './Register.css';
-import useFormValid from '../../utils/useFormValid';
+import useFormValid from '../../utils/hookValid';
 
 const Register = ({ onRegister, isFormDisabled }) => {
   const { isValid, values, errors, handleChange } = useFormValid({ name: '', email: '', password: '' });

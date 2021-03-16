@@ -60,7 +60,11 @@
   text-align: center;
 }
 
-.movie__button_type_save {
+.movie__button:hover {
+  opacity: 0.5;
+}
+
+.movie:hover .movie__button {
   box-sizing: border-box;
   background: #F4F4F4;
   cursor: pointer;
@@ -72,7 +76,7 @@
   background: #EE3465 url(../../images/saved-icon.svg) no-repeat center;
 }
 
-.movie__button_type_remove {
+.movie:hover .movie__saved-icon{
   width: 100px;
   height: 29px;
   background: #F4F4F4 url(../../images/remove-icon.svg) no-repeat center;

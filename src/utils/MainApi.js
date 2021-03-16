@@ -2,7 +2,8 @@ import fetchApi from "./fetchApi";
 
 export const BASE_URL = "https://api.kegach-diplom.students.nomoredomains.rocks";
 
-export const regist = ({ name, email, password }) =>
+
+export const register = ({ name, email, password }) =>
   fetchApi({
     BASE_URL,
     path: "signup",

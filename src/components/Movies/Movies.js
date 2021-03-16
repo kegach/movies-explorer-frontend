@@ -5,22 +5,31 @@ import Navigation from '../Navigation/Navigation';
 import SearchForm from '../SearchForm/SearchForm';
 import MoviesCardList from '../MoviesCardList/MoviesCardList';
 import Footer from '../Footer/Footer';
-import Preloader from '../Preloader/Preloader';
-import { movies } from '../../utils/movies.js';
 
-const isLoading = false;
-
-const Movies = () => (
+const Movies = ({
+  searchMovies,
+  movies,
+  saveMovie,
+  removeMovie,
+  isFetched,
+  isLoading,
+  savedMoviesIds,
+}) => (
   <>
-  <section className="movies">
     <Header>
       <Navigation />
     </Header>
-    <SearchForm />
-    <MoviesCardList movies={movies} />
+    <SearchForm searchMovies={searchMovies} />
+    {isFetched && (
+      <MoviesCardList
+        movies={movies}
+        isLoading={isLoading}
+        saveMovie={saveMovie}
+        removeMovie={removeMovie}
+        savedMoviesIds={savedMoviesIds}
+      />
+    )}
     <Footer />
-    {isLoading && <Preloader />}
-  </section>
   </>
 );
 

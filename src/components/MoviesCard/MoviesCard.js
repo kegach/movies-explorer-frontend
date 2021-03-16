@@ -1,21 +1,62 @@
-import React from 'react';
+import React, { useState, useEffect }from 'react';
 import './MoviesCard.css';
+import movieImage from '../../images/movieImage.jpeg';
 
-const MoviesCard = ({ movie, isRemovable = false }) => {
+const MoviesCard = ({ movie, onSave, onRemove, savedMoviesIds }) => {
   const {
-    image, title, duration, isSaved,
+    country,
+    director,
+    duration,
+    year,
+    description,
+    image,
+    trailer,
+    thumbnail,
+    nameRU,
+    nameEN,
+    movieId,
   } = movie;
+
+  const [isSaved, setIsSaved] = useState(false);
+  useEffect(() => {
+    if (savedMoviesIds && savedMoviesIds.includes(movieId)) {
+      setIsSaved(true);
+    } else {
+      setIsSaved(false);
+    }
+  }, [savedMoviesIds, movieId]);
+  const handleClick = () => {
+    window.open(trailer);
+  };
+  const handleSave = () => {
+    onSave({
+      country,
+      director,
+      duration,
+      year,
+      description,
+      image,
+      trailer,
+      thumbnail,
+      nameRU,
+      nameEN,
+      movieId,
+    });
+  };
+  const handleRemove = () => {
+    onRemove({ movieId });
+  };
 
   return (
     <li className="movie">
       <div className="movie__text-container">
-        <p className="movie__title">{title}</p>
+        <p className="movie__title">{nameRU}</p>
         <span className="movie__duration">{duration}</span>
       </div>
-      <img className="movie__image" src={image} alt={title} />
-        {!isSaved && <button className="movie__button movie__button_type_save">Cохранить</button>}
-        {(isSaved && isRemovable) && <button className="movie__button movie__button_type_remove" />}
-        {(isSaved && !isRemovable) && <span className="movie__button movie__saved-icon" />}
+      <img className="movie__image" src={image || movieImage} alt={nameRU} onClick={handleClick} />
+      <button className={`movie__button ${isSaved && "movie__saved-icon"}`} onClick={!isSaved ? handleSave : handleRemove}>
+        {!isSaved && "Cохранить"}
+      </button>
     </li>
   );
 };

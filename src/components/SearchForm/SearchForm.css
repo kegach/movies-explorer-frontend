@@ -135,6 +135,15 @@
   line-height: 18px;
 }
 
+.search-form__error {
+  color: #EE3465;
+  display: inline-block;
+  height: 20px;
+  width: 100%;
+  font-size: 15px;
+  line-height: 17px;
+}
+
 @media screen and (max-width: 1024px) {
   .search {
     padding: 0 50px;

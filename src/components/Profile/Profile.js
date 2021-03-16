@@ -5,7 +5,7 @@ import Section from '../Section/Section';
 import Form from '../Form/Form';
 import './Profile.css';
 import CurrentUserContext from '../../context/CurrentUserContext';
-import useFormValid from '../../utils/useFormValid';
+import useFormValid from '../../utils/hookValid';
 
 const Profile = ({ onSignout, onUpdateProfile, isFormDisabled }) => {
   const currentUser = useContext(CurrentUserContext);
