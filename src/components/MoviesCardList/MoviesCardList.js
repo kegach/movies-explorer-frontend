@@ -21,19 +21,6 @@ const MoviesCardList = ({
   const [moviesPlus, setMoviesPlus] = useState(0);
   const [windowWidth, setWindowWidth] = useState(window.innerWidth);
   const location = window.location.pathname;
-  let resizeTimeout = null;
-  const updateWindowWidth = () => {
-    if (resizeTimeout) {
-      clearTimeout(resizeTimeout);
-    }
-    resizeTimeout = setTimeout(() => setWindowWidth(window.innerWidth), 1500);
-  };
-
-  useEffect(() => {
-    window.addEventListener("resize", updateWindowWidth);
-
-    return () => window.removeEventListener("resize", updateWindowWidth);
-  });
 
   useEffect(() => {
     if (location === "/movies") {

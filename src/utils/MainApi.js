@@ -1,51 +1,105 @@
-import fetchApi from "./fetchApi";
+const BASE_URL = "https://api.kegach-diplom.students.nomoredomains.rocks";
+const headers = {
+  'Content-Type': 'application/json'
+};
 
-export const BASE_URL = "https://api.kegach-diplom.students.nomoredomains.rocks";
+export function register({ name, email, password  }) {
+  return fetch(`${BASE_URL}/signup`, {
+    method: 'POST',
+    headers,
+    body: JSON.stringify({
+      name, 
+      email, 
+      password, 
+    }),
+    credentials: 'include',
+  })
+  .then(res => {
+    if (res.ok) {
+      return res.json();
+    }
+    return Promise.reject(`Ошибка: ${res.status}`);
+});  
+}
 
+export function login({ email, password }) {
+  return fetch(`${BASE_URL}/signin`, {
+    method: 'POST',
+    headers,
+    body: JSON.stringify({
+      email,
+      password,
+    }),
+    credentials: 'include',
+  })
+  .then(res => {
+    if (res.ok) {
+      return res.json();
+    }
+    return Promise.reject(`Ошибка: ${res.status}`);
+});  
+}
 
-export const register = ({ name, email, password }) =>
-  fetchApi({
-    BASE_URL,
-    path: "signup",
-    method: "POST",
-    body: { name, email, password },
-  });
+export function signout() {
+  return fetch(`${BASE_URL}/signout`, {
+    headers,
+    credentials: 'include',
+  })
+  .then(res => {
+    if (res.ok) {
+      return res.json();
+    }
+    return Promise.reject(`Ошибка: ${res.status}`);
+});  
+}
 
-export const login = ({ email, password }) =>
-  fetchApi({
-    BASE_URL,
-    path: "signin",
-    method: "POST",
-    body: { email, password },
-  });
+export function getUser() {
+  return fetch(`${BASE_URL}/users/me`, {
+    method: 'GET',
+    headers,
+    credentials: 'include',
+  })
+  .then(res => {
+    if (res.ok) {
+      return res.json();
+    }
+    return Promise.reject(`Ошибка: ${res.status}`);
+});   
+}
 
-export const logout = () =>
-  fetchApi({
-    BASE_URL,
-    path: "signout",
-  });
+export function updateProfile({ name, email }) {
+  return fetch(`${BASE_URL}/users/me`, {
+    method: 'PATCH',
+    headers,
+    body: JSON.stringify({
+      name,
+      email
+    }),
+    credentials: 'include',
+  })
+  .then(res => {
+    if (res.ok) {
+      return res.json();
+    }
+    return Promise.reject(`Ошибка: ${res.status}`);
+  });  
+}
 
-export const getUser = () =>
-  fetchApi({
-    BASE_URL,
-    path: "users/me",
-  });
+export function getMovies() {
+  return fetch(`${BASE_URL}/movies`, {
+    method: 'GET',
+      headers,
+      credentials: 'include',
+    })
+    .then(res => {
+      if (res.ok) {
+        return res.json();
+      }
+      return Promise.reject(`Ошибка: ${res.status}`);
+  });   
+}
 
-export const updateProfile = ({ name, email }) =>
-  fetchApi({
-    BASE_URL,
-    path: "users/me",
-    method: "PATCH",
-    body: { name, email },
-  });
-
-export const getMovies = () =>
-  fetchApi({
-    BASE_URL,
-    path: "movies",
-  });
-
-export const movie = ({
+export function addMovie({   
   country,
   director,
   duration,
@@ -57,12 +111,11 @@ export const movie = ({
   nameRU,
   nameEN,
   movieId,
-}) =>
-  fetchApi({
-    BASE_URL,
-    path: "movies",
-    method: "POST",
-    body: {
+}) {
+  return fetch(`${BASE_URL}/movies`, {
+    method: 'POST',
+    headers,
+    body: JSON.stringify({
       country,
       director,
       duration,
@@ -74,13 +127,29 @@ export const movie = ({
       nameRU,
       nameEN,
       movieId,
-    },
-  });
+    }),
+    credentials: 'include',
+  })
+  .then(res => {
+    if (res.ok) {
+      return res.json();
+    }
+    return Promise.reject(`Ошибка: ${res.status}`);
+  });  
+}
 
-export const removeMovie = ({ movieId }) =>
-  fetchApi({
-    BASE_URL,
-    path: `movies/${movieId}`,
-    method: "DELETE",
-  });
+export function removeMovies({movieId}) {
+  return fetch(`${BASE_URL}/movies/${movieId}`, {
+    method: 'DELETE',
+      headers,
+      credentials: 'include',
+    })
+    .then(res => {
+      if (res.ok) {
+        return res.json();
+      }
+      return Promise.reject(`Ошибка: ${res.status}`);
+  });   
+}
+
 
