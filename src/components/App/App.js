@@ -1,6 +1,6 @@
 import React, { useState, useEffect, useCallback } from 'react';
 import { Switch, Route, Redirect } from 'react-router-dom';
-import  CurrentUserContext  from '../../context/CurrentUserContext';
+import CurrentUserContext from '../../context/CurrentUserContext';
 import ProtectedRoute from '../ProtectedRoute/ProtectedRoute';
 import Main from '../Main/Main';
 import Register from '../Register/Register';
@@ -48,7 +48,7 @@ const App = () => {
       setIsToken(true);
     }
   }, []);
-
+  
   const loadMovies = useCallback(async () => {
     if (localStorage.getItem("movies")) {
       const localData = JSON.parse(localStorage.getItem("movies"));
@@ -134,11 +134,16 @@ const App = () => {
     }
   }, []);
 
+  
+
   const handleLogin = async ({ email, password }) => {
     try {
       const user = await api.login( email, password );
       setFormReset(true);
       setCurrentUser(user);
+      if (user._id) {
+        getUser();
+      }
       setIsLoggedIn(true);
     } catch (err) {
       errorSuccess(err.message, errorIm);
@@ -229,6 +234,8 @@ const App = () => {
     setInfoTooltipImage(image);
     setIsInfoTooltipOpen(true);
   };
+
+
 
   return (
     <CurrentUserContext.Provider value={currentUser}>

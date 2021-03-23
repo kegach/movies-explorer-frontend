@@ -59,8 +59,8 @@ function MoviesCardList({
                   movie={movie}
                   savedMovies={savedMovies}
                   key={movie.movieId}
-                  add={addMovie}
-                  remove={removeMovie}
+                  addMovie={addMovie}
+                  removeMovie={removeMovie}
                   type={type} />
               );
             }
