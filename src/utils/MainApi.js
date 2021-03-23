@@ -3,7 +3,7 @@ const headers = {
   'Content-Type': 'application/json'
 };
 
-export function register({ name, email, password  }) {
+export function register( name, email, password ) {
   return fetch(`${BASE_URL}/signup`, {
     method: 'POST',
     headers,
@@ -22,7 +22,7 @@ export function register({ name, email, password  }) {
 });  
 }
 
-export function login({ email, password }) {
+export function login( email, password ) {
   return fetch(`${BASE_URL}/signin`, {
     method: 'POST',
     headers,
@@ -67,7 +67,7 @@ export function getUser() {
 });   
 }
 
-export function updateProfile({ name, email }) {
+export function updateProfile( name, email ) {
   return fetch(`${BASE_URL}/users/me`, {
     method: 'PATCH',
     headers,
@@ -99,34 +99,22 @@ export function getMovies() {
   });   
 }
 
-export function addMovie({   
-  country,
-  director,
-  duration,
-  year,
-  description,
-  image,
-  trailer,
-  thumbnail,
-  nameRU,
-  nameEN,
-  movieId,
-}) {
+export function addMovie( movie ) {
   return fetch(`${BASE_URL}/movies`, {
     method: 'POST',
     headers,
     body: JSON.stringify({
-      country,
-      director,
-      duration,
-      year,
-      description,
-      image,
-      trailer,
-      thumbnail,
-      nameRU,
-      nameEN,
-      movieId,
+      country: movie.country,
+      director: movie.director,
+      duration: movie.duration,
+      year: movie.year,
+      description: movie.description,
+      image: movie.image,
+      trailer: movie.trailer,
+      thumbnail: movie.thumbnail,
+      movieId: movie.movieId,
+      nameRU: movie.nameRU,
+      nameEN: movie.nameEN,
     }),
     credentials: 'include',
   })
@@ -138,8 +126,8 @@ export function addMovie({
   });  
 }
 
-export function removeMovies({movieId}) {
-  return fetch(`${BASE_URL}/movies/${movieId}`, {
+export function removeMovie( movie ) {
+  return fetch(`${BASE_URL}/movies/${movie.movieId}`, {
     method: 'DELETE',
       headers,
       credentials: 'include',

@@ -1,62 +1,40 @@
-import React, { useState, useEffect }from 'react';
+import React from 'react';
 import './MoviesCard.css';
 import movieImage from '../../images/movieImage.jpeg';
 
-const MoviesCard = ({ movie, onSave, onRemove, savedMoviesIds }) => {
-  const {
-    country,
-    director,
-    duration,
-    year,
-    description,
-    image,
-    trailer,
-    thumbnail,
-    nameRU,
-    nameEN,
-    movieId,
-  } = movie;
-
-  const [isSaved, setIsSaved] = useState(false);
-  useEffect(() => {
-    if (savedMoviesIds && savedMoviesIds.includes(movieId)) {
-      setIsSaved(true);
-    } else {
-      setIsSaved(false);
-    }
-  }, [savedMoviesIds, movieId]);
+const MoviesCard = ({   movie, savedMovies, addMovie, removeMovie, type, }) => {
+  
   const handleClick = () => {
-    window.open(trailer);
+    window.open(movie.trailer);
   };
+
   const handleSave = () => {
-    onSave({
-      country,
-      director,
-      duration,
-      year,
-      description,
-      image,
-      trailer,
-      thumbnail,
-      nameRU,
-      nameEN,
-      movieId,
-    });
+    addMovie(movie, type );
   };
   const handleRemove = () => {
-    onRemove({ movieId });
+    removeMovie( movie, type );
   };
 
   return (
     <li className="movie">
       <div className="movie__text-container">
-        <p className="movie__title">{nameRU}</p>
-        <span className="movie__duration">{duration}</span>
+        <p className="movie__title">{movie.nameRU}</p>
+        <span className="movie__duration">{movie.duration}</span>
       </div>
-      <img className="movie__image" src={image || movieImage} alt={nameRU} onClick={handleClick} />
-      <button className={`movie__button ${isSaved && "movie__saved-icon"}`} onClick={!isSaved ? handleSave : handleRemove}>
-        {!isSaved && "Cохранить"}
-      </button>
+      <img className="movie__image" src={movie.image || movieImage} alt={movie.nameRU} onClick={handleClick} />
+      {type === "saved-movies" ? (
+        <button className="movie__button movie__saved-icon" onClick={ handleRemove }>
+        </button>
+      ) : savedMovies.some(
+        (savedMovie) => savedMovie.movieId === movie.movieId
+      ) ? (
+        <button className="movie__button movie__remove-icon" onClick={ handleRemove }>
+        </button>
+      ) : (
+        <button className="movie__button" onClick={ handleSave }>
+          {"Cохранить"}
+        </button>
+      )}
     </li>
   );
 };

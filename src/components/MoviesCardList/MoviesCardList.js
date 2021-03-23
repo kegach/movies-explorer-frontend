@@ -10,16 +10,17 @@ import {
 } from "../../utils/utils";
 import Preloader from '../Preloader/Preloader';
 
-const MoviesCardList = ({
+function MoviesCardList({
   movies,
+  savedMovies,
   isLoading = false,
-  saveMovie = () => {},
+  addMovie,
   removeMovie,
-  savedMoviesIds,
-}) => {
+  type,
+}) {
   const [moviesNow, setMoviesNow] = useState(0);
   const [moviesPlus, setMoviesPlus] = useState(0);
-  const [windowWidth, setWindowWidth] = useState(window.innerWidth);
+  const windowWidth = window.innerWidth;
   const location = window.location.pathname;
 
   useEffect(() => {
@@ -56,11 +57,11 @@ const MoviesCardList = ({
               moviesToRender.push(
                 <MoviesCard
                   movie={movie}
+                  savedMovies={savedMovies}
                   key={movie.movieId}
-                  onSave={saveMovie}
-                  onRemove={removeMovie}
-                  savedMoviesIds={savedMoviesIds}
-                />
+                  add={addMovie}
+                  remove={removeMovie}
+                  type={type} />
               );
             }
             return moviesToRender;
@@ -69,12 +70,12 @@ const MoviesCardList = ({
       )}
       {!isLoading && movies.length > moviesNow && (
         <button onClick={handleMoreClick} className="movies__more-button">
-          Еще
+              Еще
         </button>
       )}
     </section>
   );
-};
+}
 
 
 

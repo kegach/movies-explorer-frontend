@@ -83,6 +83,13 @@
   cursor: pointer;
 }
 
+.movie__remove-icon{
+  width: 100px;
+  height: 29px;
+  background: #F4F4F4 url(../../images/remove-icon.svg) no-repeat center;
+  cursor: pointer;
+}
+
 @media screen and (max-width: 768px) {
   .movie__image {
     height: 190px;
