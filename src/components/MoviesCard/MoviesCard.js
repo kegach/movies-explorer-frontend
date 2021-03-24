@@ -28,7 +28,7 @@ const MoviesCard = ({  movie, savedMovies, addMovie, removeMovie, type, }) => {
         <p className="movie__title">{movie.nameRU}</p>
         <span className="movie__duration">{time(movie.duration)}</span>
       </div>
-      <img className="movie__image" src={ `https://api.nomoreparties.co${movie.image.url}` } alt={movie.nameRU} onClick={handleClick} />
+      <img className="movie__image" src={ movie.image } alt={movie.nameRU} onClick={handleClick} />
       {type === "saved-movies" ? (
         <button className="movie__button movie__saved-icon" onClick={ handleRemove }>
         </button>
