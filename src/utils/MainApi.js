@@ -99,23 +99,26 @@ export function getMovies() {
   });   
 }
 
-export function addMovie( movie ) {
+export function addMovie({
+  country, director, duration, year, description,
+  image, trailer, thumbnail, nameRU, nameEN, movieId,
+}) {
   return fetch(`${BASE_URL}/movies`, {
     method: 'POST',
     headers,
     body: JSON.stringify({
-      country: movie.country,
-      director: movie.director,
-      duration: movie.duration,
-      year: movie.year,
-      description: movie.description,
-      image: movie.image,
-      trailer: movie.trailer,
-      thumbnail: movie.thumbnail,
-      nameRU: movie.nameRU,
-      nameEN: movie.nameEN,
-      movieId: movie.movieId,
-    }),
+        country,
+        director,
+        duration,
+        year,
+        description,
+        image,
+        trailer,
+        thumbnail,
+        nameRU,
+        nameEN,
+        movieId,
+      },),
     credentials: 'include',
   })
   .then(res => {
@@ -126,8 +129,8 @@ export function addMovie( movie ) {
   });  
 }
 
-export function removeMovie( movie ) {
-  return fetch(`${BASE_URL}/movies/${movie.movieId}`, {
+export function removeMovie( { movieId }) {
+  return fetch(`${BASE_URL}/movies/${movieId}`, {
     method: 'DELETE',
       headers,
       credentials: 'include',

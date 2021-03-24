@@ -1,15 +1,30 @@
 import React from 'react';
 import './MoviesCard.css';
-//import movieImage from '../../images/movieImage.jpeg';
+import movieImage from '../../images/movieImage.jpeg';
 
 const MoviesCard = ({  movie, savedMovies, addMovie, removeMovie, type, }) => {
-  
+  const {
+    country, director, year, description, image, thumbnail,
+    nameRU, nameEN, duration, trailer, movieId,
+  } = movie;
   const handleClick = () => {
-    window.open(movie.trailer);
+    window.open(trailer);
   };
 
   const handleSave = () => {
-    addMovie( movie, type );
+    addMovie({
+      country: country || 'Не указано',
+      director: director || 'Не указано',
+      duration: duration || 0,
+      year: year || 'Не указано',
+      description: description || 'Не указано',
+      image: image || movieImage,
+      trailer: (trailer && trailer.startsWith('http')) ? trailer : 'https://youtube.com',
+      thumbnail: thumbnail || 'https://djkazu.supervinyl.net/application/files/9914/6139/6114/diary_detail_no_image.png',
+      nameRU: nameRU || 'Не указано',
+      nameEN: nameEN || 'Не указано',
+      movieId,
+    });
   };
   const handleRemove = () => {
     removeMovie( movie, type );
@@ -25,15 +40,15 @@ const MoviesCard = ({  movie, savedMovies, addMovie, removeMovie, type, }) => {
   return (
     <li className="movie">
       <div className="movie__text-container">
-        <p className="movie__title">{movie.nameRU}</p>
-        <span className="movie__duration">{time(movie.duration)}</span>
+        <p className="movie__title">{nameRU}</p>
+        <span className="movie__duration">{time(duration)}</span>
       </div>
-      <img className="movie__image" src={ movie.image } alt={movie.nameRU} onClick={handleClick} />
+      <img className="movie__image" src={ image } alt={nameRU} onClick={handleClick} />
       {type === "saved-movies" ? (
         <button className="movie__button movie__saved-icon" onClick={ handleRemove }>
         </button>
       ) : savedMovies.some(
-        (savedMovie) => savedMovie.movieId === movie.movieId
+        (savedMovie) => savedMovie.movieId === movieId
       ) ? (
         <button className="movie__button movie__remove-icon" onClick={ handleRemove }>
         </button>
