@@ -11,6 +11,7 @@ import errorIm from '../../images/error.svg';
 function SavedMovies({
   moviesData,
   currentMovies,
+  currentSavedMovies,
   savedMovies,
   getSavedMovies,
   getMovies,

@@ -73,7 +73,7 @@ export function updateProfile( name, email ) {
     headers,
     body: JSON.stringify({
       name,
-      email
+      email,
     }),
     credentials: 'include',
   })

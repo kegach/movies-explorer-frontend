@@ -13,7 +13,7 @@ import Preloader from '../Preloader/Preloader';
 function MoviesCardList({
   movies,
   savedMovies,
-  isLoading = false,
+  isDownload = false,
   addMovie,
   removeMovie,
   type,
@@ -46,11 +46,11 @@ function MoviesCardList({
 
   return (
     <section className="movies">
-      {isLoading && <Preloader />}
-      {!isLoading && movies.length === 0 && (
+      {isDownload && <Preloader />}
+      {!isDownload && movies.length === 0 && (
         <p className="movies__error">Ничего не найдено</p>
       )}
-      {!isLoading && movies && (
+      {!isDownload && movies && (
         <ul className="movies__list">
           {movies.reduce((moviesToRender, movie) => {
             if (moviesToRender.length < moviesNow) {
@@ -68,7 +68,7 @@ function MoviesCardList({
           }, [])}
         </ul>
       )}
-      {!isLoading && movies.length > moviesNow && (
+      {!isDownload && movies.length > moviesNow && (
         <button onClick={handleMoreClick} className="movies__more-button">
               Еще
         </button>

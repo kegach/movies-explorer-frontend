@@ -1,6 +1,6 @@
 import React from 'react';
 import './MoviesCard.css';
-import movieImage from '../../images/movieImage.jpeg';
+//import movieImage from '../../images/movieImage.jpeg';
 
 const MoviesCard = ({  movie, savedMovies, addMovie, removeMovie, type, }) => {
   

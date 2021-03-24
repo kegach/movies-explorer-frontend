@@ -1,14 +1,12 @@
-import React, { useContext } from 'react';
+import React from 'react';
 import Header from '../Header/Header';
 import Navigation from '../Navigation/Navigation';
 import Section from '../Section/Section';
 import Form from '../Form/Form';
 import './Profile.css';
-import CurrentUserContext from '../../context/CurrentUserContext';
 import useFormValid from '../../utils/hookValid';
 
-const Profile = ({ onSignout, onUpdateProfile, isFormDisabled }) => {
-  const currentUser = useContext(CurrentUserContext);
+const Profile = ({ currentUser, onSignout, onUpdateProfile }) => {
   const initValues = { name: currentUser.name, email: currentUser.email };
   const { isValid, values, errors, handleChange } = useFormValid(initValues);
   const isProfileValid = isValid
@@ -25,7 +23,6 @@ const Profile = ({ onSignout, onUpdateProfile, isFormDisabled }) => {
           data={values}
           onSubmit={onUpdateProfile}
           isValid={isProfileValid}
-          isFormDisabled={isFormDisabled}
           buttonText="Редактировать"
           submitButtonMod="form__submit-button_section_profile"
           linkMod="form__link_type_exit"
