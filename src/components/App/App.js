@@ -284,7 +284,7 @@ const App = () => {
           <ProtectedRoute path="/saved-movies"
             isLoggedIn={isLoggedIn}
             component={SavedMovies}
-            moviesData={SavedMovies}
+            moviesData={savedMovies}
             currentMovies={currentMovies}
             currentSavedMovies={currentSavedMovies}
             savedMovies={savedMovies}
