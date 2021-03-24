@@ -118,7 +118,7 @@ export function addMovie({
         nameRU,
         nameEN,
         movieId,
-      },),
+      }),
     credentials: 'include',
   })
   .then(res => {
