@@ -109,7 +109,7 @@ export function addMovie( movie ) {
       duration: movie.duration,
       year: movie.year,
       description: movie.description,
-      image: `https://api.nomoreparties.co${movie.image.url}`,
+      image: movie.image,
       trailer: movie.trailer,
       thumbnail: movie.thumbnail,
       movieId: movie.movieId,

@@ -85,11 +85,6 @@ const App = () => {
     localStorage.removeItem("movies");
   };
 
-  useEffect(() => {
-    loadMovies();
-    getUser();
-  }, [loadMovies, getUser]);
-
   const getCurrentMovies = useCallback(
     async (movies, key, shorts) => {
       setIsDownload(true);
@@ -235,7 +230,10 @@ const App = () => {
     setIsInfoTooltipOpen(true);
   };
 
-
+  useEffect(() => {
+    loadMovies();
+    getUser();
+  }, [loadMovies, getUser]);
 
   return (
     <CurrentUserContext.Provider value={currentUser}>
