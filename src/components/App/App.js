@@ -191,20 +191,16 @@ const App = () => {
     }
   };
 
-  const addMovie = useCallback(
-  async (movieData) => {
+  const addMovie = async (movieData) => {
     try {
       const newMovie = await api.addMovie(movieData);
       setSavedMovies([newMovie, ...savedMovies]);
     } catch (err) {
       errorSuccess(err.message, errorIm);
     }
-  },
-  [savedMovies]
-  );
+  };
   
-  const removeMovie = useCallback(
-    async (movie, type) => {
+  const removeMovie = async (movie, type) => {
       try {
       const removedMovie = await api.removeMovie(movie.movieId);
       const updatedSavedMovies = savedMovies.filter(
@@ -220,9 +216,7 @@ const App = () => {
     } catch (err) {
       errorSuccess(err.message, errorIm);
     }
-  },
-  [savedMovies, currentMovies]
-);
+  };
 
   const errorSuccess = (message, image) => {
     setMessage(message);
