@@ -23,7 +23,7 @@ const MoviesCard = ({  movie, savedMovies, addMovie, removeMovie, type, }) => {
       thumbnail: thumbnail || 'https://djkazu.supervinyl.net/application/files/9914/6139/6114/diary_detail_no_image.png',
       nameRU: nameRU || 'Не указано',
       nameEN: nameEN || 'Не указано',
-      movieId,
+      movieId: movieId,
     });
   };
   const handleRemove = () => {

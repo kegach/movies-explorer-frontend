@@ -129,8 +129,6 @@ const App = () => {
     }
   }, []);
 
-  
-
   const handleLogin = async ({ email, password }) => {
     try {
       const user = await api.login( email, password );
