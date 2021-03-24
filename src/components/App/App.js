@@ -62,9 +62,9 @@ const App = () => {
           duration: movie.duration ? movie.duration : 0,
           year: movie.year ? movie.year : "--",
           description: movie.description ? movie.description : "--",
-          image: movie.image ? movie.image : "--",
-          trailer: movie.trailer ? movie.trailer : "--",
-          thumbnail: movie.thumbnail ? movie.thumbnail : "--",
+          image: movie.image ? `https://api.nomoreparties.co${movie.image.url}` : "--",
+          trailer: movie.trailerLink ? movie.trailerLink: "https://api.kegach-diplom.students.nomoredomains.rocks/not-found",
+          thumbnail: movie.image ? `https://api.nomoreparties.co${movie.image.url}` : "--",
           movieId: movie.id ? movie.id : 0,
           nameRU: movie.nameRU ? movie.nameRU : "--",
           nameEN: movie.nameEN ? movie.nameEN : "--",
@@ -167,10 +167,10 @@ const App = () => {
     }
   };
 
-  const handleUpdateProfile = async (inform) => {
+  const handleUpdateProfile = async ({ name, email }) => {
     try {
       setFormReset(true);
-      const user = await api.updateProfile(inform);
+      const user = await api.updateProfile({ name, email });
       setCurrentUser(user);     
       errorSuccess("Успешно", successIm);
     } catch (err) {
@@ -286,7 +286,7 @@ const App = () => {
           <ProtectedRoute path="/saved-movies"
             isLoggedIn={isLoggedIn}
             component={SavedMovies}
-            moviesData={allMovies}
+            moviesData={SavedMovies}
             currentMovies={currentMovies}
             currentSavedMovies={currentSavedMovies}
             savedMovies={savedMovies}

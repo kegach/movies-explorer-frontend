@@ -1,7 +1,7 @@
 import { useState, useCallback, useEffect } from 'react';
 import './SearchForm.css';
 import checkbox from '../../images/check-box.svg';
-import handleCheckbox from '../../images/check-box.svg';
+import handleCheckbox from '../../images/handlecheck-box.svg';
 
 function SearchForm({
   moviesData,
@@ -41,6 +41,7 @@ function SearchForm({
     if (isSearched) {
       handleMovieSearch();
     }
+  // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [shortMovie]);
 
   useEffect(() => {
@@ -58,10 +59,11 @@ function SearchForm({
           <button className="search__button"></button>
         </div>
       </div>
-    <div className="search-checkbox" onClick={handleShortMovieChange}>
+    <div className="search-checkbox" >
       <div className="search-checkbox__container">
         <img
           src={shortMovie ? checkbox : handleCheckbox}
+          onClick={handleShortMovieChange}
           className="search-checkbox__checkbox"
           alt="Кнопка короткометражек"
         />
