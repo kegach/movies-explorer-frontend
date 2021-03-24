@@ -21,7 +21,7 @@ const MoviesCard = ({  movie, savedMovies, addMovie, removeMovie, type, }) => {
       nameRU: movie.nameRU || 'Не указано',
       nameEN: movie.nameEN || 'Не указано',
       movieId: movie.movieId,
-    }, type );
+    });
   };
   const handleRemove = () => {
     removeMovie( movie, type );
