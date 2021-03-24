@@ -165,7 +165,7 @@ const App = () => {
   const handleUpdateProfile = async ({ name, email }) => {
     try {
       setFormReset(true);
-      const user = await api.updateProfile({ name, email });
+      const user = await api.updateProfile( name, email );
       setCurrentUser(user);     
       errorSuccess("Успешно", successIm);
     } catch (err) {

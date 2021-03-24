@@ -112,9 +112,9 @@ export function addMovie( movie ) {
       image: movie.image,
       trailer: movie.trailer,
       thumbnail: movie.thumbnail,
-      movieId: movie.movieId,
       nameRU: movie.nameRU,
-      nameEN: movie.nameEN,
+      nameEN: movie.nameEN,      
+      movieId: movie.movieId,
     }),
     credentials: 'include',
   })
