@@ -1,6 +1,6 @@
 import React from 'react';
 import './MoviesCard.css';
-import movieImage from '../../images/movieImage.jpeg';
+//import movieImage from '../../images/movieImage.jpeg';
 
 const MoviesCard = ({  movie, savedMovies, addMovie, removeMovie, type, }) => {
   
@@ -9,19 +9,7 @@ const MoviesCard = ({  movie, savedMovies, addMovie, removeMovie, type, }) => {
   };
 
   const handleSave = () => {
-    addMovie({
-      country: movie.country || 'Не указано',
-      director: movie.director || 'Не указано',
-      duration: movie.duration || 0,
-      year: movie.year || 'Не указано',
-      description: movie.description || 'Не указано',
-      image: movie.image || movieImage,
-      trailer: movie.trailer,
-      thumbnail: movie.thumbnail || movieImage,
-      nameRU: movie.nameRU || 'Не указано',
-      nameEN: movie.nameEN || 'Не указано',
-      movieId: movie.movieId,
-    });
+    addMovie( movie, type );
   };
   const handleRemove = () => {
     removeMovie( movie, type );

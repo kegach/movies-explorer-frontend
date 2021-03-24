@@ -192,9 +192,9 @@ const App = () => {
   };
 
   const addMovie = useCallback(
-  async (movieData, type) => {
+  async (movie) => {
     try {
-      const newMovie = await api.addMovie(movieData);
+      const newMovie = await api.addMovie(movie);
       setSavedMovies([newMovie, ...savedMovies]);
     } catch (err) {
       errorSuccess(err.message, errorIm);
