@@ -190,6 +190,7 @@ const App = () => {
   };
 
   const addMovie = async (movieData) => {
+    console.log(movieData);
     try {
       const newMovie = await api.addMovie(movieData);
       setSavedMovies([newMovie, ...savedMovies]);
