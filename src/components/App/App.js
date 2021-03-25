@@ -18,7 +18,11 @@ import successIm from '../../images/success.svg';
 
 const App = () => {
   const [isToken, setIsToken] = useState(false); 
-  const [currentUser, setCurrentUser] = useState({});
+  const [currentUser, setCurrentUser] = useState({
+    name: "",
+    email: "",
+    _id: null,
+  });
   const [isLoggedIn, setIsLoggedIn] = useState(false);
   const [formReset, setFormReset] = useState(false);
     
@@ -37,7 +41,11 @@ const App = () => {
   const getUser = useCallback(async () => {
     try {
       const user = await api.getUser();
-      setCurrentUser(user);
+      setCurrentUser({
+        name: user.name,
+        email: user.email,
+        _id: user._id,
+      });
       setIsLoggedIn(true);
       localStorage.setItem("loggedIn", true);
     } catch (err) {
@@ -164,7 +172,10 @@ const App = () => {
     try {
       setFormReset(true);
       const user = await api.updateProfile( name, email );
-      setCurrentUser(user);     
+      setCurrentUser({
+        name: user.name,
+        email: user.email,
+      });     
       errorSuccess("Успешно", successIm);
     } catch (err) {
       errorSuccess(err.message, errorIm);
@@ -177,7 +188,11 @@ const App = () => {
     try {
       await api.signout();
       setIsLoggedIn(false);
-      setCurrentUser({});
+      setCurrentUser({
+        name: "",
+        email: "",
+        _id: null,
+      });
       setCurrentMovies([]);
       setSavedMovies([]);
       localStorage.removeItem("loggedIn");
