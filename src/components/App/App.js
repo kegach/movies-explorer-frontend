@@ -197,10 +197,6 @@ const App = () => {
       country, director, year, description, image, thumbnail,
       nameRU, nameEN, duration, trailer, movieId,
     });
-    console.log(
-      country, director, year, description, image, thumbnail,
-      nameRU, nameEN, duration, trailer, movieId,
-    );
     try {
       const newMovie = await api.addMovie(
         country, director, year, description, image, thumbnail,
