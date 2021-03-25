@@ -87,7 +87,6 @@ export function updateProfile( name, email ) {
 
 export function getMovies() {
   return fetch(`${BASE_URL}/movies`, {
-    method: 'GET',
       headers,
       credentials: 'include',
     })
