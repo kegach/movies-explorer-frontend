@@ -189,10 +189,23 @@ const App = () => {
     }
   };
 
-  const addMovie = async (movieData) => {
-    console.log(movieData);
+  const addMovie = async ({
+    country, director, year, description, image, thumbnail,
+    nameRU, nameEN, duration, trailer, movieId,
+  }) => {
+    console.log({
+      country, director, year, description, image, thumbnail,
+      nameRU, nameEN, duration, trailer, movieId,
+    });
+    console.log(
+      country, director, year, description, image, thumbnail,
+      nameRU, nameEN, duration, trailer, movieId,
+    );
     try {
-      const newMovie = await api.addMovie(movieData);
+      const newMovie = await api.addMovie(
+        country, director, year, description, image, thumbnail,
+        nameRU, nameEN, duration, trailer, movieId,
+      );
       setSavedMovies([newMovie, ...savedMovies]);
     } catch (err) {
       errorSuccess(err.message, errorIm);

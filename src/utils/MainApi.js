@@ -99,10 +99,10 @@ export function getMovies() {
   });   
 }
 
-export function addMovie({
+export function addMovie(
   country, director, duration, year, description,
   image, trailer, thumbnail, nameRU, nameEN, movieId,
-}) {
+) {
   return fetch(`${BASE_URL}/movies`, {
     method: 'POST',
     headers,
