@@ -11,8 +11,8 @@ import Profile from '../Profile/Profile';
 import NotFound from '../NotFound/NotFound';
 import InfoTooltip from '../InfoTooltip/InfoTooltip';
 import './App.css';
-import api from '../../utils/MainApi';
-import moviesApi from '../../utils/MoviesApi';
+import * as api from '../../utils/MainApi';
+import * as moviesApi from '../../utils/MoviesApi';
 import errorIm from '../../images/error.svg';
 import successIm from '../../images/success.svg';
 
