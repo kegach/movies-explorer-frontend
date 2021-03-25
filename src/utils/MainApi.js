@@ -1,142 +1,130 @@
 const BASE_URL = "https://api.kegach-diplom.students.nomoredomains.rocks";
-const headers = {
-  'Content-Type': 'application/json'
+const API_HEADERS = {
+  "Content-Type": "application/json",
+  Accept: "application/json",
 };
+const API_CREDENTIALS = "include";
 
-export function register( name, email, password ) {
-  return fetch(`${BASE_URL}/signup`, {
-    method: 'POST',
-    headers,
-    body: JSON.stringify({
-      name, 
-      email, 
-      password, 
-    }),
-    credentials: 'include',
-  })
-  .then(res => {
+class MainApi {
+  constructor(options) {
+    this._baseUrl = options.baseUrl;
+    this._headers = options.headers;
+    this._credentials = options.credentials;
+  }
+
+  async _getRes(res) {
     if (res.ok) {
       return res.json();
     }
-    return Promise.reject(`Ошибка: ${res.status}`);
-});  
+    const errorMessage = await res.json();
+    return Promise.reject(new Error(`Ошибка: ${errorMessage.message}`));
+  }
+
+  async getMovies() {
+    const res = await fetch(`${this._baseUrl}/movies`, {
+      method: "GET",
+      headers: this._headers,
+      credentials: this._credentials,
+    });
+    return this._getRes(res);
+  }
+
+  async addMovie( movie ) {
+    return fetch(`${this._baseUrl}/movies`, {
+      method: "POST",
+      headers: this._headers,
+      credentials: this._credentials,
+      body: JSON.stringify({
+        country: movie.country,
+        director: movie.director,
+        duration: movie.duration,
+        year: movie.year,
+        description: movie.description,
+        image: movie.image,
+        trailer: movie.trailer,
+        thumbnail: movie.thumbnail,
+        movieId: movie.movieId,
+        nameRU: movie.nameRU,
+        nameEN: movie.nameEN,
+      }),
+    }).then((res) => {
+      return this._getRes(res);
+    });
+  }
+
+  async removeMovie( movie ) {
+    return fetch(`${this._baseUrl}/movies/${movie.movieId}`, {
+      method: "delete",
+      headers: this._headers,
+      credentials: this._credentials,
+    }).then((res) => {
+      return this._getRes(res);
+    });
+  }
+
+  async getUser() {
+    const res = await fetch(`${this._baseUrl}/users/me`, {
+      method: "GET",
+      headers: this._headers,
+      credentials: this._credentials,
+    });
+    return this._getRes(res);
+  }
+
+  async updateProfile( name, email ) {
+    const res = await fetch(`${this._baseUrl}/users/me`, {
+      method: "PATCH",
+      headers: this._headers,
+      credentials: this._credentials,
+      body: JSON.stringify({
+        name: name,
+        email: email,
+      }),
+    });
+    return this._getRes(res);
+  }
+
+  async register( name, email, password ) {
+    const res = await fetch(`${this._baseUrl}/signup`, {
+      method: "POST",
+      headers: this._headers,
+      credentials: this._credentials,
+      body: JSON.stringify({
+        name: name,
+        email: email,
+        password: password,
+      }),
+    });
+    return this._getRes(res);
+  }
+
+  async login( email, password ) {
+    const res = await fetch(`${this._baseUrl}/signin`, {
+      method: "POST",
+      headers: this._headers,
+      credentials: this._credentials,
+      body: JSON.stringify({
+        email: email,
+        password: password,
+      }),
+    });
+    return this._getRes(res);
+  }
+
+  async signout() {
+    const res = await fetch(`${this._baseUrl}/signout`, {
+      method: "GET",
+      headers: this._headers,
+      credentials: this._credentials,
+    });
+    return this._getRes(res);
+  }
 }
 
-export function login( email, password ) {
-  return fetch(`${BASE_URL}/signin`, {
-    method: 'POST',
-    headers,
-    body: JSON.stringify({
-      email,
-      password,
-    }),
-    credentials: 'include',
-  })
-  .then(res => {
-    if (res.ok) {
-      return res.json();
-    }
-    return Promise.reject(`Ошибка: ${res.status}`);
-});  
-}
+const mainApi = new MainApi({
+  baseUrl: BASE_URL,
+  headers: API_HEADERS,
+  credentials: API_CREDENTIALS,
+});
 
-export function signout() {
-  return fetch(`${BASE_URL}/signout`, {
-    headers,
-    credentials: 'include',
-  })
-  .then(res => {
-    if (res.ok) {
-      return res.json();
-    }
-    return Promise.reject(`Ошибка: ${res.status}`);
-});  
-}
-
-export function getUser() {
-  return fetch(`${BASE_URL}/users/me`, {
-    method: 'GET',
-    headers,
-    credentials: 'include',
-  })
-  .then(res => {
-    if (res.ok) {
-      return res.json();
-    }
-    return Promise.reject(`Ошибка: ${res.status}`);
-});   
-}
-
-export function updateProfile( name, email ) {
-  return fetch(`${BASE_URL}/users/me`, {
-    method: 'PATCH',
-    headers,
-    body: JSON.stringify({
-      name,
-      email,
-    }),
-    credentials: 'include',
-  })
-  .then(res => {
-    if (res.ok) {
-      return res.json();
-    }
-    return Promise.reject(`Ошибка: ${res.status}`);
-  });  
-}
-
-export function getMovies() {
-  return fetch(`${BASE_URL}/movies`, {
-      headers,
-      credentials: 'include',
-    })
-    .then(res => {
-      if (res.ok) {
-        return res.json();
-      }
-      return Promise.reject(`Ошибка: ${res.status}`);
-  });   
-}
-
-export function addMovie(movie) {
-  return fetch(`${BASE_URL}/movies`, {
-    method: 'POST',
-    headers,
-    body: JSON.stringify({
-      country: movie.country,
-      director: movie.director,
-      duration: movie.duration,
-      year: movie.year,
-      description: movie.description,
-      image: movie.image,
-      trailer: movie.trailer,
-      thumbnail: movie.thumbnail,
-      movieId: movie.movieId,
-      nameRU: movie.nameRU,
-      nameEN: movie.nameEN,
-    }),
-    credentials: 'include',
-  })
-  .then(res => {
-    if (res.ok) {
-      return res.json();
-    }
-    return Promise.reject(`Ошибка: ${res.status}`);
-  });  
-}
-
-export function removeMovie( movie ) {
-  return fetch(`${BASE_URL}/movies/${movie.movieId}`, {
-    method: 'DELETE',
-      headers,
-      credentials: 'include',
-    })
-    .then(res => {
-      if (res.ok) {
-        return res.json();
-      }
-      return Promise.reject(`Ошибка: ${res.status}`);
-  });   
-}
-
-
+export default mainApi;
