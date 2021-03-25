@@ -45,7 +45,6 @@ function Movies({
       )}
       {searchStatus === "Успешно" && (
         <MoviesCardList
-          isDownload={isDownload}
           movies={currentMovies}
           savedMovies={savedMovies}
           addMovie={addMovie}

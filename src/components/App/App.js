@@ -33,7 +33,6 @@ const App = () => {
   const [searchStatus, setSearchStatus] = useState("");
 
   const [isFetched, setIsFetched] = useState(false);
-  const [isDownload, setIsDownload] = useState(false);
   const [isInfoTooltipOpen, setIsInfoTooltipOpen] = useState(false);
   const [message, setMessage] = useState('');
   const [infoTooltipImage, setInfoTooltipImage] = useState('');
@@ -95,8 +94,6 @@ const App = () => {
 
   const getCurrentMovies = useCallback(
     async (movies, key, shorts) => {
-      setIsDownload(true);
-      try {
       if (allMovies.length === 0) {
         setSearchStatus("Ошибка");
         return;
@@ -120,9 +117,6 @@ const App = () => {
         errorSuccess("Ничего не найдено", errorIm);
         setSearchStatus("Ошибка");
       } 
-    } finally {
-      setIsDownload(false);
-    }
     },
     [allMovies]
   );
@@ -281,7 +275,6 @@ const App = () => {
           <ProtectedRoute path="/movies"
             isLoggedIn={isLoggedIn}
             isFetched={isFetched}
-            isDownload={isDownload}
             component={Movies}
             moviesData={allMovies}
             currentMovies={currentMovies}

@@ -13,7 +13,6 @@ import Preloader from '../Preloader/Preloader';
 function MoviesCardList({
   movies,
   savedMovies,
-  isDownload = false,
   addMovie,
   removeMovie,
   type,
@@ -22,7 +21,7 @@ function MoviesCardList({
   const [moviesPlus, setMoviesPlus] = useState(0);
   const windowWidth = window.innerWidth;
   const location = window.location.pathname;
-
+  let isDownload= false;
   useEffect(() => {
     if (location === "/movies") {
       if (windowWidth <= 480) {
