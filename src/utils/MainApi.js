@@ -121,10 +121,10 @@ class MainApi {
   }
 }
 
-const mainApi = new MainApi({
+const api = new MainApi({
   baseUrl: BASE_URL,
   headers: API_HEADERS,
   credentials: API_CREDENTIALS,
 });
 
-export default mainApi;
+export default api;
