@@ -189,28 +189,23 @@ const App = () => {
     }
   };
 
-  const addMovie = async ({
-    country, director, year, description, image, thumbnail,
-    nameRU, nameEN, duration, trailer, movieId,
-  }) => {
-    console.log({
-      country, director, year, description, image, thumbnail,
-      nameRU, nameEN, duration, trailer, movieId,
-    });
+  const addMovie = useCallback ( 
+    async (movie) => {
+    console.log(movie);
     try {
-      const newMovie = await api.addMovie(
-        country, director, year, description, image, thumbnail,
-        nameRU, nameEN, duration, trailer, movieId,
-      );
+      const newMovie = await api.addMovie(movie);
       setSavedMovies([newMovie, ...savedMovies]);
     } catch (err) {
       errorSuccess(err.message, errorIm);
     }
-  };
+  },
+  [savedMovies]
+);
   
-  const removeMovie = async (movie, type) => {
+  const removeMovie = useCallback( 
+     async (movie, type) => {
       try {
-      const removedMovie = await api.removeMovie(movie.movieId);
+      const removedMovie = await api.removeMovie(movie);
       const updatedSavedMovies = savedMovies.filter(
         (movie) => movie.movieId !== removedMovie.movieId
       );
@@ -224,7 +219,9 @@ const App = () => {
     } catch (err) {
       errorSuccess(err.message, errorIm);
     }
-  };
+  },
+    [savedMovies, currentMovies]
+  );
 
   const errorSuccess = (message, image) => {
     setMessage(message);
