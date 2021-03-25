@@ -1,4 +1,5 @@
-const BASE_URL = "https://api.kegach-diplom.students.nomoredomains.rocks";
+//const BASE_URL = "https://api.kegach-diplom.students.nomoredomains.rocks";
+const BASE_URL = "https://api.movies-explorer.alexnik42.students.nomoredomains.monster";
 const headers = {
   'Content-Type': 'application/json'
 };
