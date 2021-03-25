@@ -52,7 +52,7 @@ function SavedMovies({
           savedMovies={savedMovies}
           addMovie={addMovie}
           removeMovie={removeMovie}
-          type="all-movies"
+          type="saved-movies"
         />
       )}
       <Footer />
