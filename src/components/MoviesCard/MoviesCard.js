@@ -21,7 +21,7 @@ const MoviesCard = ({  movie, savedMovies, addMovie, removeMovie, type, }) => {
       image: image || movieImage,
       trailer: (trailer && trailer.startsWith('http')) ? trailer : 'https://youtube.com',
       thumbnail: thumbnail || 'https://djkazu.supervinyl.net/application/files/9914/6139/6114/diary_detail_no_image.png',
-      nameRU: nameRU,
+      nameRU: `${nameRU}`,
       nameEN: nameEN || 'Не указано',
       movieId: movieId,
     });
