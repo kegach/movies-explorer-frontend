@@ -58,11 +58,11 @@
   font-size: 12px;
   line-height: 11px;
   text-align: center;
+  background: #F4F4F4;
 }
 
-.movie__button_type_save {
-  box-sizing: border-box;
-  background: #F4F4F4;
+.movie__button:hover {
+  opacity: 0.8;
   cursor: pointer;
 }
 
@@ -72,7 +72,14 @@
   background: #EE3465 url(../../images/saved-icon.svg) no-repeat center;
 }
 
-.movie__button_type_remove {
+.movie__saved-icon:hover {
+  width: 100px;
+  height: 29px;
+  background: #F4F4F4 url(../../images/remove-icon.svg) no-repeat center;
+  cursor: pointer;
+}
+
+.movie__removed-icon{
   width: 100px;
   height: 29px;
   background: #F4F4F4 url(../../images/remove-icon.svg) no-repeat center;

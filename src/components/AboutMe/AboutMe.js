@@ -1,7 +1,7 @@
 import React from 'react';
 import Section from '../Section/Section';
 import './AboutMe.css';
-import vital from '../../images/vital.svg';
+import image from '../../images/in.png';
 import { facebook, github } from '../../utils/links';
 
 const AboutMe = ({ children }) => (
@@ -9,11 +9,10 @@ const AboutMe = ({ children }) => (
     <div className="aboutme__two-columns">
       <div className="aboutme__left-column">
         <div className="aboutme__student-info-container">
-          <h3 className="aboutme__name">Виталий</h3>
-          <p className="aboutme__summary">Фронтенд-разработчик, 30 лет</p>
+          <h3 className="aboutme__name">Миша</h3>
+          <p className="aboutme__summary">Фронтенд-разработчик, 20 лет</p>
           <p className="aboutme__description">
-          Я родился и живу в Саратове, закончил факультет экономики СГУ. У меня есть жена 
-и дочь. Я люблю слушать музыку, а ещё увлекаюсь бегом. Недавно начал кодить. С 2015 года работал в компании «СКБ Контур». После того, как прошёл курс по веб-разработке, начал заниматься фриланс-заказами и ушёл с постоянной работы.
+          Я родился и живу в Москве, учусь в Финансовом Университете при Правительстве РФ на 3 курсе. Я люблю слушать музыку и смотреть фильмы. Недавно начал кодить. После того, как прошёл курс по веб-разработке, начал заниматься фриланс-заказами, а может и нашел постоянную работу в какой-нибудь веб-студии.
           </p>
         </div>
         <ul className="aboutme__list">
@@ -26,7 +25,7 @@ const AboutMe = ({ children }) => (
         </ul>
       </div>
       <div className="aboutme__right-column">
-        <img className="aboutme__image" src={vital} alt="Картинка студента" />
+        <img className="aboutme__image" src={image} alt="Картинка студента" />
       </div>
     </div>
     {children}
