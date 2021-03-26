@@ -123,6 +123,8 @@ const App = () => {
 
   useEffect(() => {
     const getSavedMovies = async () => {
+      // eslint-disable-next-line no-unused-expressions
+      console.trace;
       try {
       const savedMovies = await api.getMovies();
       setSavedMovies(savedMovies);
