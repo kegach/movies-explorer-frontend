@@ -134,7 +134,7 @@ const App = () => {
     }
   };
     if (isLoggedIn) {
-      getSavedMovies();
+     // getSavedMovies();
     }
   }, [isLoggedIn]);
 
