@@ -51,9 +51,8 @@ function MoviesCardList({
       )}
       {!isDownload && movies && (
         <ul className="movies__list">
-          {movies.reduce((moviesToRender, movie) => {
-            if (moviesToRender.length < moviesNow) {
-              moviesToRender.push(
+          {movies.map((movie) => {
+            if (movies.length < moviesNow) {(
                 <MoviesCard
                   movie={movie}
                   savedMovies={savedMovies}
@@ -61,10 +60,8 @@ function MoviesCardList({
                   addMovie={addMovie}
                   removeMovie={removeMovie}
                   type={type} />
-              );
-            }
-            return moviesToRender;
-          }, [])}
+              )}
+              })})
         </ul>
       )}
       {!isDownload && movies.length > moviesNow && (
