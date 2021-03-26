@@ -1,4 +1,4 @@
-import React, { useState, useEffect } from 'react';
+import React, { useState } from 'react';
 import Header from '../Header/Header';
 import Navigation from '../Navigation/Navigation';
 import SearchForm from '../SearchForm/SearchForm';
@@ -13,7 +13,6 @@ function SavedMovies({
   currentMovies,
   currentSavedMovies,
   savedMovies,
-  getSavedMovies,
   getMovies,
   searchStatus,
   setSearchStatus,
@@ -22,7 +21,6 @@ function SavedMovies({
   removeMovie,
 }) { 
   const [isInfoTooltipOpen, setIsInfoTooltipOpen] = useState(false);
-  useEffect(() => { getSavedMovies() }, [getSavedMovies]);
 
   return (
   <>

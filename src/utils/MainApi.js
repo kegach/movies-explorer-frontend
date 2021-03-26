@@ -90,7 +90,7 @@ export function getMovies() {
       headers,
       credentials: 'include',
     })
-    .then(res => {
+    .then((res) => {
       if (res.ok) {
         return res.json();
       }

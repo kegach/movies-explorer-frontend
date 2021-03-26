@@ -121,15 +121,20 @@ const App = () => {
     [allMovies]
   );
 
-  const getSavedMovies = useCallback(async () => {
-    try {
+  useEffect(() => {
+    const getSavedMovies = async () => {
+      try {
       const savedMovies = await api.getMovies();
       setSavedMovies(savedMovies);
       setCurrentSavedMovies(savedMovies);
     } catch (err) {
       errorSuccess(err.message, errorIm);
     }
-  }, []);
+  };
+    if (isLoggedIn) {
+      getSavedMovies();
+    }
+  }, [isLoggedIn]);
 
   const handleLogin = async ({ email, password }) => {
     try {
@@ -295,7 +300,6 @@ const App = () => {
             currentMovies={currentMovies}
             currentSavedMovies={currentSavedMovies}
             savedMovies={savedMovies}
-            getSavedMovies={getSavedMovies}
             getMovies={getCurrentMovies}
             searchStatus={searchStatus}
             setSearchStatus={setSearchStatus}
